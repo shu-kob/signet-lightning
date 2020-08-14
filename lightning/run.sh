@@ -22,10 +22,11 @@ set -e -a
 
 imagename="c-lightning"
 datadirmp=$HOME/docker-signet
+bitcoindimage="docker-fullnode"
 
 if [ $# -gt 0 ]; then imagename=$1; shift; fi
 if [ $# -gt 0 ]; then datadirmp=$1; shift; fi
 if [ $# -gt 0 ]; then echo "syntax: $0 [<image name> [<datadir>]]"; exit 1; fi
 
 mkdir -p $datadirmp
-docker run -p 9735:9735 -v $datadirmp:/root/.lightning $imagename
+docker run --link=$bitcoindimage -p 0.0.0.0:9735:9735 -v $datadirmp:/root/.lightning $imagename

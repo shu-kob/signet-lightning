@@ -21,4 +21,8 @@ RUN mkdir -p ${LIGHTNING_DATA}
 
 EXPOSE 9735
 
+COPY docker-entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+
 CMD ["lightningd"]

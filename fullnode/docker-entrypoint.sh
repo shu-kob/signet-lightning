@@ -5,7 +5,7 @@ set -e
 
 if [ ! -e "$BITCOIN_DATA/bitcoin.conf" ]; then
     echo "$0: creating $BITCOIN_DATA/bitcoin.conf with signet=1"
-    echo -e "signet=1\n[signet]\n$BITCOIN_EXTRA_ARGS" > $BITCOIN_DATA/bitcoin.conf
+    echo -e "signet=1\ntxindex=1\nrpcuser=hoge\nrpcpassword=hoge\n[signet]\n$BITCOIN_EXTRA_ARGS" > $BITCOIN_DATA/bitcoin.conf
 fi
 
 if [ $(echo "$1" | cut -c1) = "-" ]; then
